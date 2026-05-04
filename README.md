@@ -32,15 +32,6 @@ Prism includes **14+ specialized tools** to handle almost any design requirement
 
 Prism is fully responsive. It features a smooth, slide-out sidebar menu and optimized touch controls, allowing you to generate CSS on the go from your tablet or smartphone.
 
-## 📖 How to Use
-
-1.  **Clone the Repository:**
-    ```bash
-    git clone [https://github.com/Arjunren/Prism-CSS-Toolkit.git](https://github.com/Arjunren/Prism-CSS-Toolkit.git)
-    ```
-2.  **Open `index.html`:** Simply open the file in any modern web browser.
-3.  **Generate & Copy:** Tweak the parameters to your liking and click **"Copy CSS"**. The code is instantly saved to your clipboard.
-
 ## 📄 License
 
 This project is licensed under the **MIT License**. See the license section in the dashboard for full details.
