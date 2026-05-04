@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arjunren Von | Ultimate CSS Toolkit</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#030712',
+                        panel: '#111827',
+                        primary: '#6366f1',
+                        primaryHover: '#4f46e5',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+
+        dialog[open] {
+            animation: modalFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95) translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .bg-checkered {
+            background-color: #0f172a;
+            background-image: radial-gradient(#334155 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-dark text-slate-200 h-screen flex overflow-hidden font-sans antialiased selection:bg-primary selection:text-white">
+
+    <style id="dynamic-animations"></style>
+
+    <dialog id="modernModal"
+        class="bg-panel/90 text-slate-200 p-0 rounded-2xl border border-slate-700/50 shadow-2xl shadow-primary/20 w-11/12 max-w-lg backdrop:bg-black/70 backdrop:backdrop-blur-md m-auto z-[60]">
+        <div class="p-8">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="h-8 w-8 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-white tracking-tight" id="modalTitle">CSS Copied!</h3>
+            </div>
+            <div class="bg-dark/80 text-emerald-400 p-5 rounded-xl font-mono text-sm break-all mb-8 border border-slate-700/50 whitespace-pre-wrap shadow-inner"
+                id="modalMessage"></div>
+            <button id="closeModalBtn"
+                class="w-full bg-primary hover:bg-primaryHover text-white px-6 py-3 rounded-xl font-semibold transition-all duration-200 shadow-lg shadow-primary/20 hover:shadow-primary/40">
+                Continue Building
+            </button>
+        </div>
+    </dialog>
+
+    <dialog id="licenseModal"
+        class="bg-panel/95 text-slate-200 p-0 rounded-2xl border border-slate-700/50 shadow-2xl w-11/12 max-w-2xl backdrop:bg-black/80 backdrop:backdrop-blur-sm m-auto z-[60]">
+        <div class="p-8">
+            <h3 class="text-2xl font-black text-white mb-2 tracking-tight">MIT License</h3>
+            <p class="text-slate-400 mb-6 text-sm">Copyright (c) 2026 Arjunren Von</p>
+            <div
+                class="bg-dark p-5 rounded-xl text-sm text-slate-300 border border-slate-800 h-64 overflow-y-auto mb-6 leading-relaxed font-mono">
+                Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+                associated documentation files (the "Software"), to deal in the Software without restriction, including
+                without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+                copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the
+                following conditions:<br><br>
+                The above copyright notice and this permission notice shall be included in all copies or substantial
+                portions of the Software.<br><br>
+                THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
+                LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+                NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+                WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+                SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+            </div>
+            <div class="flex justify-between items-center">
+                <a href="https://github.com/Arjunren" target="_blank"
+                    class="text-primary hover:text-primaryHover font-semibold flex items-center gap-2 transition-colors">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd"
+                            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    @Arjunren
+                </a>
+                <button id="closeLicenseBtn"
+                    class="bg-slate-700 hover:bg-slate-600 text-white px-6 py-2 rounded-xl font-medium transition-colors">Close</button>
+            </div>
+        </div>
+    </dialog>
+
+    <div id="mobile-overlay" class="fixed inset-0 bg-black/80 z-40 hidden md:hidden backdrop-blur-sm transition-opacity"
+        onclick="toggleMenu()"></div>
+
+    <aside id="sidebar"
+        class="fixed inset-y-0 left-0 z-50 w-72 bg-panel/95 backdrop-blur-xl border-r border-slate-800 flex flex-col transform -translate-x-full md:relative md:translate-x-0 transition-transform duration-300 ease-out shadow-2xl md:shadow-none">
+        <div
+            class="p-8 border-b border-slate-800/50 flex justify-between items-center bg-gradient-to-br from-slate-900 to-panel">
+            <div>
+                <h2
+                    class="text-2xl font-black bg-clip-text text-transparent bg-gradient-to-r from-primary to-emerald-400 tracking-tight">
+                    CSS Toolkit</h2>
+                <p class="text-xs font-medium text-slate-500 uppercase tracking-widest mt-1">Premium Edition</p>
+            </div>
+            <button class="md:hidden text-slate-400 hover:text-white p-2" onclick="toggleMenu()">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
+            </button>
+        </div>
+        <ul class="flex-1 overflow-y-auto py-6 px-4 space-y-1" id="navList">
+            <li><button data-target="glassmorphism"
+                    class="nav-item w-full text-left px-5 py-3 rounded-xl text-slate-400 font-medium hover:text-white hover:bg-slate-800/50 transition-all">Glassmorphism</button>
+            </li>
+            <li><button data-target="box-shadow"
+                    class="nav-item w-full text-left px-5 py-3 rounded-xl text-slate-400 font-medium hover:text-white hover:bg-slate-800/50 transition-all">Box
+                    Shadow</button></li>
+            <li><button data-target="gradient"
+                    class="nav-item w-full text-left px-5 py-3 rounded-xl text-slate-400 font-medium hover:text-white hover:bg-slate-800/50 transition-all">Gradient</button>
+            </li>
+            <li><button data-target="color-theory"
+                    class="nav-item w-full text-left px-5 py-3 rounded-xl text-slate-400 font-medium hover:text-white hover:bg-slate-800/50 transition-all">Color
+                    Theory</button></li>
+            <li><button data-target="grid"
+                    class="nav-item w-full text-left px-5 py-3 rounded-xl text-slate-400 font-medium hover:text-white hover:bg-slate-800/50 transition-all">Grid
+                    Layout</button></li>
+            <li><button data-target="flex"
+                    class="nav-item w-full text-left px-5 py-3 rounded-xl text-slate-400 font-medium hover:text-white hover:bg-slate-800/50 transition-all">Flexbox
+                    Layout</button></li>
+            <li><button data-target="neumorphism"
+                    class="nav-item w-full text-left px-5 py-3 rounded-xl text-slate-400 font-medium hover:text-white hover:bg-slate-800/50 transition-all">Neumorphism</button>
+            </li>
+            <li><button data-target="shape"
+                    class="nav-item w-full text-left px-5 py-3 rounded-xl text-slate-400 font-medium hover:text-white hover:bg-slate-800/50 transition-all">Shape
+                    Generator</button></li>
+            <li><button data-target="font"
+                    class="nav-item w-full text-left px-5 py-3 rounded-xl text-slate-400 font-medium hover:text-white hover:bg-slate-800/50 transition-all">Typography
+                    & Fonts</button></li>
+            <li><button data-target="font-size"
+                    class="nav-item w-full text-left px-5 py-3 rounded-xl text-slate-400 font-medium hover:text-white hover:bg-slate-800/50 transition-all">Font
+                    Size Converter</button></li>
+            <li><button data-target="animation"
+                    class="nav-item w-full text-left px-5 py-3 rounded-xl text-slate-400 font-medium hover:text-white hover:bg-slate-800/50 transition-all">Animations
+                    Keyframes</button></li>
+            <div class="h-px bg-slate-800 my-4 mx-2"></div>
+            <li><button data-target="states"
+                    class="nav-item w-full text-left px-5 py-3 rounded-xl text-slate-400 font-medium hover:text-white hover:bg-emerald-500/10 border border-transparent hover:border-emerald-500/20 transition-all flex items-center justify-between">Hover
+                    & States <span
+                        class="text-[10px] bg-emerald-500/20 text-emerald-400 px-2 py-1 rounded-full uppercase tracking-wider">New</span></button>
+            </li>
+            <li><button data-target="filters"
+                    class="nav-item w-full text-left px-5 py-3 rounded-xl text-slate-400 font-medium hover:text-white hover:bg-cyan-500/10 border border-transparent hover:border-cyan-500/20 transition-all flex items-center justify-between">CSS
+                    Filters <span
+                        class="text-[10px] bg-cyan-500/20 text-cyan-400 px-2 py-1 rounded-full uppercase tracking-wider">New</span></button>
+            </li>
+            <li><button data-target="transforms"
+                    class="nav-item w-full text-left px-5 py-3 rounded-xl text-slate-400 font-medium hover:text-white hover:bg-rose-500/10 border border-transparent hover:border-rose-500/20 transition-all flex items-center justify-between">Transforms
+                    <span
+                        class="text-[10px] bg-rose-500/20 text-rose-400 px-2 py-1 rounded-full uppercase tracking-wider">New</span></button>
+            </li>
+        </ul>
+        <div class="p-6 border-t border-slate-800/50 text-xs text-slate-500 flex flex-col gap-2">
+            <p>Made by <a href="https://github.com/Arjunren" target="_blank"
+                    class="text-primary hover:text-primaryHover hover:underline font-semibold transition-colors">Arjunren
+                    Von</a></p>
+            <button onclick="document.getElementById('licenseModal').showModal()"
+                class="text-left text-slate-600 hover:text-slate-300 transition-colors w-max">View License</button>
+        </div>
+    </aside>
+
+    <main
+        class="flex-1 flex flex-col h-full overflow-hidden relative bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-slate-900 via-dark to-dark">
+        <header
+            class="md:hidden flex items-center justify-between p-5 bg-panel/80 backdrop-blur-md border-b border-slate-800 z-10 sticky top-0">
+            <h1 class="font-bold text-white tracking-tight">CSS Toolkit</h1>
+            <button onclick="toggleMenu()" class="text-slate-400 hover:text-white focus:outline-none p-1">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </button>
+        </header>
+
+        <div class="flex-1 overflow-y-auto p-6 md:p-10 lg:p-14 relative scroll-smooth">
+
+            <section id="glassmorphism" class="generator-section hidden">
+                <div class="mb-10">
+                    <h1 class="text-4xl font-black text-white tracking-tight">Glassmorphism</h1>
+                </div>
+                <div class="grid grid-cols-1 xl:grid-cols-2 gap-10">
+                    <div
+                        class="bg-panel/40 backdrop-blur-xl p-8 rounded-3xl border border-slate-700/50 space-y-8 shadow-xl">
+                        <div><label class="flex justify-between text-sm font-medium text-slate-300 mb-3"><span>Blur
+                                    Radius</span> <span id="glass-blur-val"
+                                    class="text-primary bg-primary/10 px-2 rounded">10px</span></label><input
+                                type="range" id="glass-blur" min="0" max="40" value="10" class="w-full accent-primary">
+                        </div>
+                        <div><label
+                                class="flex justify-between text-sm font-medium text-slate-300 mb-3"><span>Transparency</span>
+                                <span id="glass-alpha-val"
+                                    class="text-primary bg-primary/10 px-2 rounded">0.2</span></label><input
+                                type="range" id="glass-alpha" min="0" max="1" step="0.05" value="0.2"
+                                class="w-full accent-primary"></div>
+                        <div><label class="block text-sm font-medium text-slate-300 mb-3">Background Color</label><input
+                                type="color" id="glass-color" value="#ffffff"
+                                class="h-12 w-full cursor-pointer bg-dark/50 rounded-lg border border-slate-700 p-1">
+                        </div><button onclick="copyGlassCode()"
+                            class="w-full bg-primary hover:bg-primaryHover text-white py-4 rounded-xl font-bold shadow-lg transition-all hover:-translate-y-0.5">Copy
+                            CSS Rules</button>
+                    </div>
+                    <div
+                        class="bg-gradient-to-br from-pink-500 via-purple-500 to-indigo-500 rounded-3xl min-h-[400px] flex items-center justify-center relative overflow-hidden shadow-2xl">
+                        <div class="absolute w-40 h-40 bg-white/40 rounded-full top-10 left-10 blur-2xl animate-pulse">
+                        </div>
+                        <div class="absolute w-56 h-56 bg-black/30 rounded-full bottom-10 right-10 blur-2xl"></div>
+                        <div id="glass-preview"
+                            class="w-64 h-64 flex items-center justify-center text-white font-bold text-2xl rounded-3xl border shadow-2xl relative z-10 transition-all duration-200">
+                            Glass Panel</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="box-shadow" class="generator-section hidden">
+                <div class="mb-10">
+                    <h1 class="text-4xl font-black text-white tracking-tight">Box Shadow</h1>
+                </div>
+                <div class="grid grid-cols-1 xl:grid-cols-2 gap-10">
+                    <div
+                        class="bg-panel/40 backdrop-blur-xl p-8 rounded-3xl border border-slate-700/50 space-y-6 shadow-xl">
+                        <div><label class="flex justify-between text-sm font-medium text-slate-300 mb-3"><span>Horizontal
+                                    Offset (X)</span> <span id="bs-x-val"
+                                    class="text-primary bg-primary/10 px-2 rounded">10px</span></label><input
+                                type="range" id="bs-x" min="-50" max="50" value="10" class="w-full accent-primary">
+                        </div>
+                        <div><label class="flex justify-between text-sm font-medium text-slate-300 mb-3"><span>Vertical
+                                    Offset (Y)</span> <span id="bs-y-val"
+                                    class="text-primary bg-primary/10 px-2 rounded">10px</span></label><input
+                                type="range" id="bs-y" min="-50" max="50" value="10" class="w-full accent-primary">
+                        </div>
+                        <div><label class="flex justify-between text-sm font-medium text-slate-300 mb-3"><span>Blur
+                                    Radius</span> <span id="bs-blur-val"
+                                    class="text-primary bg-primary/10 px-2 rounded">20px</span></label><input
+                                type="range" id="bs-blur" min="0" max="100" value="20" class="w-full accent-primary">
+                        </div>
+                        <div><label class="flex justify-between text-sm font-medium text-slate-300 mb-3"><span>Spread
+                                    Radius</span> <span id="bs-spread-val"
+                                    class="text-primary bg-primary/10 px-2 rounded">0px</span></label><input
+                                type="range" id="bs-spread" min="-50" max="50" value="0" class="w-full accent-primary">
+                        </div>
+                        <div><label class="block text-sm font-medium text-slate-300 mb-3">Shadow Color</label><input
+                                type="color" id="bs-color" value="#000000"
+                                class="h-12 w-full cursor-pointer bg-dark/50 rounded-lg border border-slate-700 p-1">
+                        </div><button onclick="copyShadowCode()"
+                            class="w-full bg-primary hover:bg-primaryHover text-white py-4 rounded-xl font-bold shadow-lg transition-all hover:-translate-y-0.5 mt-4">Copy
+                            CSS Rules</button>
+                    </div>
+                    <div
+                        class="bg-checkered rounded-3xl min-h-[400px] flex items-center justify-center border border-slate-800 shadow-inner">
+                        <div id="bs-preview"
+                            class="w-56 h-56 bg-slate-100 flex items-center justify-center text-slate-800 font-bold text-xl rounded-2xl transition-shadow duration-75">
+                            Target Box</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="gradient" class="generator-section hidden">
+                <div class="mb-10">
+                    <h1 class="text-4xl font-black text-white tracking-tight">Linear Gradient</h1>
+                </div>
+                <div class="grid grid-cols-1 xl:grid-cols-2 gap-10">
+                    <div
+                        class="bg-panel/40 backdrop-blur-xl p-8 rounded-3xl border border-slate-700/50 space-y-8 shadow-xl">
+                        <div><label class="flex justify-between text-sm font-medium text-slate-300 mb-3"><span>Rotation
+                                    Angle</span> <span id="grad-angle-val"
+                                    class="text-primary bg-primary/10 px-2 rounded">135deg</span></label><input
+                                type="range" id="grad-angle" min="0" max="360" value="135"
+                                class="w-full accent-primary"></div>
+                        <div><label class="block text-sm font-medium text-slate-300 mb-3">Start Color</label><input
+                                type="color" id="grad-color1" value="#6366f1"
+                                class="h-12 w-full cursor-pointer bg-dark/50 rounded-lg border border-slate-700 p-1">
+                        </div>
+                        <div><label class="block text-sm font-medium text-slate-300 mb-3">End Color</label><input
+                                type="color" id="grad-color2" value="#a855f7"
+                                class="h-12 w-full cursor-pointer bg-dark/50 rounded-lg border border-slate-700 p-1">
+                        </div><button onclick="copyGradientCode()"
+                            class="w-full bg-primary hover:bg-primaryHover text-white py-4 rounded-xl font-bold shadow-lg transition-all hover:-translate-y-0.5">Copy
+                            CSS Rules</button>
+                    </div>
+                    <div id="grad-preview"
+                        class="rounded-3xl min-h-[400px] border border-slate-700 shadow-2xl relative overflow-hidden flex items-center justify-center">
+                        <div class="text-white/80 font-bold text-3xl mix-blend-overlay">Gorgeous</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="color-theory" class="generator-section hidden">
+                <div class="mb-10">
+                    <h1 class="text-4xl font-black text-white tracking-tight">Color Theory Setup</h1>
+                </div>
+                <div
+                    class="bg-panel/40 backdrop-blur-xl p-8 rounded-3xl border border-slate-700/50 mb-10 max-w-xl mx-auto text-center shadow-xl">
+                    <label class="block text-sm font-medium text-slate-300 mb-4 uppercase tracking-widest">Select Core
+                        Brand Color</label><input type="color" id="ct-base" value="#3b82f6"
+                        class="h-20 w-full md:w-2/3 mx-auto cursor-pointer bg-dark/50 rounded-2xl border-4 border-slate-700 p-1 mb-8 shadow-inner hover:border-primary transition-colors"><button
+                        onclick="copyColorCode()"
+                        class="w-full md:w-2/3 mx-auto bg-primary hover:bg-primaryHover text-white py-4 rounded-xl font-bold shadow-lg transition-all hover:-translate-y-0.5 block">Copy
+                        CSS Variables</button>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                    <div class="flex flex-col items-center">
+                        <div id="ct-analog1"
+                            class="w-full h-40 rounded-3xl mb-4 shadow-xl border border-white/5 transition-colors">
+                        </div><span
+                            class="text-slate-400 font-mono bg-dark px-4 py-2 rounded-lg border border-slate-800 text-sm"
+                            id="ct-txt1"></span><span class="text-xs text-slate-500 mt-2">Lighter Shade</span>
+                    </div>
+                    <div class="flex flex-col items-center transform md:-translate-y-6">
+                        <div id="ct-base-prev"
+                            class="w-full h-48 rounded-3xl mb-4 shadow-2xl ring-4 ring-white/10 border border-white/20 transition-colors">
+                        </div><span
+                            class="text-white font-mono font-bold bg-dark px-4 py-2 rounded-lg border border-slate-700 text-sm"
+                            id="ct-txt-base"></span><span
+                            class="text-xs text-primary font-bold mt-2 uppercase tracking-wide">Base</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div id="ct-comp"
+                            class="w-full h-40 rounded-3xl mb-4 shadow-xl border border-white/5 transition-colors">
+                        </div><span
+                            class="text-slate-400 font-mono bg-dark px-4 py-2 rounded-lg border border-slate-800 text-sm"
+                            id="ct-txt-comp"></span><span class="text-xs text-slate-500 mt-2">Darker Shade</span>
+                    </div>
+                </div>
+            </section>
+
+            <section id="grid" class="generator-section hidden">
+                <div class="mb-10">
+                    <h1 class="text-4xl font-black text-white tracking-tight">Grid Layout</h1>
+                </div>
+                <div class="grid grid-cols-1 xl:grid-cols-12 gap-10">
+                    <div
+                        class="xl:col-span-4 bg-panel/40 backdrop-blur-xl p-8 rounded-3xl border border-slate-700/50 space-y-6 shadow-xl">
+                        <div><label
+                                class="flex justify-between text-sm font-medium text-slate-300 mb-3"><span>Columns</span>
+                                <span id="grid-cols-val"
+                                    class="text-primary bg-primary/10 px-2 rounded">3</span></label><input type="range"
+                                id="grid-cols" min="1" max="10" value="3" class="w-full accent-primary"></div>
+                        <div><label
+                                class="flex justify-between text-sm font-medium text-slate-300 mb-3"><span>Rows</span>
+                                <span id="grid-rows-val"
+                                    class="text-primary bg-primary/10 px-2 rounded">2</span></label><input type="range"
+                                id="grid-rows" min="1" max="10" value="2" class="w-full accent-primary"></div>
+                        <div><label class="flex justify-between text-sm font-medium text-slate-300 mb-3"><span>Gap
+                                    Spacing</span> <span id="grid-gap-val"
+                                    class="text-primary bg-primary/10 px-2 rounded">16px</span></label><input
+                                type="range" id="grid-gap" min="0" max="60" value="16" class="w-full accent-primary">
+                        </div>
+                        <div class="flex gap-2 pt-2">
+                            <button onclick="modifyGridBox(1)"
+                                class="flex-1 bg-slate-800 hover:bg-slate-700 text-white py-3 rounded-xl font-semibold transition-colors">+
+                                Add Box</button>
+                            <button onclick="modifyGridBox(-1)"
+                                class="flex-1 bg-slate-800 hover:bg-slate-700 text-white py-3 rounded-xl font-semibold transition-colors">-
+                                Remove Box</button>
+                        </div>
+                        <button onclick="copyGridCode()"
+                            class="w-full bg-primary hover:bg-primaryHover text-white py-4 rounded-xl font-bold shadow-lg transition-all hover:-translate-y-0.5">Copy
+                            Container CSS</button>
+                    </div>
+                    <div
+                        class="xl:col-span-8 bg-checkered p-8 rounded-3xl min-h-[400px] border border-slate-800 shadow-inner overflow-hidden">
+                        <div id="grid-preview"
+                            class="w-full h-full bg-slate-900/80 border border-slate-700 rounded-2xl p-4 transition-all"
+                            style="display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr); gap: 16px;">
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="flex" class="generator-section hidden">
+                <div class="mb-10">
+                    <h1 class="text-4xl font-black text-white tracking-tight">Flexbox Layout</h1>
+                </div>
+                <div class="grid grid-cols-1 xl:grid-cols-12 gap-10">
+                    <div
+                        class="xl:col-span-4 bg-panel/40 backdrop-blur-xl p-8 rounded-3xl border border-slate-700/50 space-y-5 shadow-xl">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-2">Flex Direction</label>
+                            <select id="flex-dir"
+                                class="w-full bg-dark/80 border border-slate-700 rounded-xl p-3 text-white outline-none focus:border-primary transition-colors appearance-none">
+                                <option value="row">row</option>
+                                <option value="column">column</option>
+                                <option value="row-reverse">row-reverse</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-2">Flex Wrap</label>
+                            <select id="flex-wrap"
+                                class="w-full bg-dark/80 border border-slate-700 rounded-xl p-3 text-white outline-none focus:border-primary transition-colors appearance-none">
+                                <option value="nowrap">nowrap</option>
+                                <option value="wrap">wrap</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-2">Justify Content</label>
+                            <select id="flex-jc"
+                                class="w-full bg-dark/80 border border-slate-700 rounded-xl p-3 text-white outline-none focus:border-primary transition-colors appearance-none">
+                                <option value="flex-start">flex-start</option>
+                                <option value="center">center</option>
+                                <option value="flex-end">flex-end</option>
+                                <option value="space-between">space-between</option>
+                                <option value="space-evenly">space-evenly</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-2">Align Items</label>
+                            <select id="flex-ai"
+                                class="w-full bg-dark/80 border border-slate-700 rounded-xl p-3 text-white outline-none focus:border-primary transition-colors appearance-none">
+                                <option value="stretch">stretch</option>
+                                <option value="flex-start">flex-start</option>
+                                <option value="center">center</option>
+                                <option value="flex-end">flex-end</option>
+                            </select>
+                        </div>
+                        <div><label
+                                class="flex justify-between text-sm font-medium text-slate-300 mb-3 pt-2"><span>Gap</span>
+                                <span id="flex-gap-val"
+                                    class="text-primary bg-primary/10 px-2 rounded">16px</span></label><input
+                                type="range" id="flex-gap" min="0" max="80" value="16" class="w-full accent-primary">
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="modifyFlexBox(1)"
+                                class="flex-1 bg-slate-800 hover:bg-slate-700 text-white py-3 rounded-xl font-semibold transition-colors">+
+                                Box</button>
+                            <button onclick="modifyFlexBox(-1)"
+                                class="flex-1 bg-slate-800 hover:bg-slate-700 text-white py-3 rounded-xl font-semibold transition-colors">-
+                                Box</button>
+                        </div>
+                        <button onclick="copyFlexCode()"
+                            class="w-full bg-primary hover:bg-primaryHover text-white py-4 rounded-xl font-bold shadow-lg transition-all hover:-translate-y-0.5">Copy
+                            Container CSS</button>
+                    </div>
+                    <div
+                        class="xl:col-span-8 bg-checkered p-8 rounded-3xl min-h-[400px] border border-slate-800 shadow-inner overflow-hidden">
+                        <div id="flex-preview"
+                            class="w-full h-full bg-slate-900/80 border border-slate-700 rounded-2xl p-4 transition-all"
+                            style="display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: flex-start; align-items: stretch; gap: 16px;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="neumorphism" class="generator-section hidden">
+                <div class="mb-10">
+                    <h1 class="text-4xl font-black text-white tracking-tight">Neumorphism</h1>
+                </div>
+                <div class="grid grid-cols-1 xl:grid-cols-2 gap-10">
+                    <div
+                        class="bg-panel/40 backdrop-blur-xl p-8 rounded-3xl border border-slate-700/50 space-y-8 shadow-xl">
+                        <div><label class="block text-sm font-medium text-slate-300 mb-3">Surface Color</label><input
+                                type="color" id="neu-color" value="#1e293b"
+                                class="h-12 w-full cursor-pointer bg-dark/50 rounded-lg border border-slate-700 p-1">
+                        </div>
+                        <div><label
+                                class="flex justify-between text-sm font-medium text-slate-300 mb-3"><span>Size/Distance</span>
+                                <span id="neu-dist-val"
+                                    class="text-primary bg-primary/10 px-2 rounded">12px</span></label><input
+                                type="range" id="neu-dist" min="2" max="40" value="12" class="w-full accent-primary">
+                        </div>
+                        <div><label class="flex justify-between text-sm font-medium text-slate-300 mb-3"><span>Blur
+                                    Radius</span> <span id="neu-blur-val"
+                                    class="text-primary bg-primary/10 px-2 rounded">24px</span></label><input
+                                type="range" id="neu-blur" min="0" max="80" value="24" class="w-full accent-primary">
+                        </div><button onclick="copyNeuCode()"
+                            class="w-full bg-primary hover:bg-primaryHover text-white py-4 rounded-xl font-bold shadow-lg transition-all hover:-translate-y-0.5">Copy
+                            CSS Rules</button>
+                    </div>
+                    <div id="neu-bg"
+                        class="rounded-3xl min-h-[400px] flex items-center justify-center border border-slate-700 transition-colors shadow-inner"
+                        style="background-color: #1e293b;">
+                        <div id="neu-preview"
+                            class="w-56 h-56 rounded-[2rem] flex items-center justify-center font-bold text-white/40 text-xl transition-all duration-200 tracking-wider">
+                            Soft Button</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="shape" class="generator-section hidden">
+                <div class="mb-10">
+                    <h1 class="text-4xl font-black text-white tracking-tight">Organic Shapes</h1>
+                </div>
+                <div class="grid grid-cols-1 xl:grid-cols-2 gap-10">
+                    <div
+                        class="bg-panel/40 backdrop-blur-xl p-8 rounded-3xl border border-slate-700/50 space-y-6 shadow-xl">
+                        <div><label class="flex justify-between text-sm font-medium text-slate-300 mb-3"><span>Top
+                                    Left</span><span id="sh-tl-val"
+                                    class="text-primary font-mono text-xs">50%</span></label><input type="range"
+                                id="sh-tl" min="0" max="100" value="50" class="w-full accent-primary"></div>
+                        <div><label class="flex justify-between text-sm font-medium text-slate-300 mb-3"><span>Top
+                                    Right</span><span id="sh-tr-val"
+                                    class="text-primary font-mono text-xs">50%</span></label><input type="range"
+                                id="sh-tr" min="0" max="100" value="50" class="w-full accent-primary"></div>
+                        <div><label class="flex justify-between text-sm font-medium text-slate-300 mb-3"><span>Bottom
+                                    Right</span><span id="sh-br-val"
+                                    class="text-primary font-mono text-xs">50%</span></label><input type="range"
+                                id="sh-br" min="0" max="100" value="50" class="w-full accent-primary"></div>
+                        <div><label class="flex justify-between text-sm font-medium text-slate-300 mb-3"><span>Bottom
+                                    Left</span><span id="sh-bl-val"
+                                    class="text-primary font-mono text-xs">50%</span></label><input type="range"
+                                id="sh-bl" min="0" max="100" value="50" class="w-full accent-primary"></div><button
+                            onclick="copyShapeCode()"
+                            class="w-full bg-primary hover:bg-primaryHover text-white py-4 rounded-xl font-bold shadow-lg transition-all hover:-translate-y-0.5 mt-4">Copy
+                            CSS Rules</button>
+                    </div>
+                    <div
+                        class="bg-checkered rounded-3xl min-h-[400px] flex items-center justify-center border border-slate-800 shadow-inner">
+                        <div id="shape-preview"
+                            class="w-72 h-72 bg-gradient-to-tr from-emerald-400 via-teal-500 to-cyan-500 transition-all duration-100 shadow-2xl border border-white/20"
+                            style="border-radius: 50% 50% 50% 50%;"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="font" class="generator-section hidden">
+                <div class="mb-10">
+                    <h1 class="text-4xl font-black text-white tracking-tight">Typography Studio</h1>
+                </div>
+                <div class="grid grid-cols-1 xl:grid-cols-2 gap-10">
+                    <div
+                        class="bg-panel/40 backdrop-blur-xl p-8 rounded-3xl border border-slate-700/50 space-y-6 shadow-xl">
+                        <div class="bg-dark/50 p-4 rounded-xl border border-primary/20 mb-6">
+                            <h4 class="text-xs uppercase tracking-widest text-primary font-bold mb-3">Google Font
+                                Importer</h4>
+                            <div class="space-y-4">
+                                <div><label class="block text-xs text-slate-400 mb-1">URL (@import or
+                                        Link)</label><input type="text" id="g-font-url"
+                                        placeholder="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+                                        class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-sm text-white outline-none focus:border-primary transition-colors">
+                                </div>
+                                <div><label class="block text-xs text-slate-400 mb-1">Exact Font Family Name</label>
+                                    <div class="flex gap-2"><input type="text" id="g-font-name"
+                                            placeholder="'Pacifico', cursive"
+                                            class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-sm text-white outline-none focus:border-primary transition-colors"><button
+                                            onclick="applyGoogleFont()"
+                                            class="bg-primary/20 text-primary hover:bg-primary hover:text-white px-4 rounded-lg text-sm font-bold transition-colors whitespace-nowrap">Load</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div><label class="block text-sm font-medium text-slate-300 mb-2">Web-Safe
+                                Fallbacks</label><select id="f-family"
+                                class="w-full bg-dark/80 border border-slate-700 rounded-xl p-3 text-white outline-none focus:border-primary transition-colors appearance-none">
+                                <option value="sans-serif">System Sans-serif</option>
+                                <option value="serif">System Serif</option>
+                                <option value="monospace">Monospace</option>
+                            </select></div>
+                        <div><label class="flex justify-between text-sm font-medium text-slate-300 mb-3"><span>Font
+                                    Weight</span> <span id="f-weight-val"
+                                    class="text-primary bg-primary/10 px-2 rounded">400</span></label><input
+                                type="range" id="f-weight" min="100" max="900" step="100" value="400"
+                                class="w-full accent-primary"></div>
+                        <div><label class="flex justify-between text-sm font-medium text-slate-300 mb-3"><span>Letter
+                                    Spacing</span> <span id="f-ls-val"
+                                    class="text-primary bg-primary/10 px-2 rounded">0px</span></label><input
+                                type="range" id="f-ls" min="-5" max="20" value="0" class="w-full accent-primary"></div>
+                        <div><label class="flex justify-between text-sm font-medium text-slate-300 mb-3"><span>Line
+                                    Height</span> <span id="f-lh-val"
+                                    class="text-primary bg-primary/10 px-2 rounded">1.5</span></label><input
+                                type="range" id="f-lh" min="0.8" max="3" step="0.1" value="1.5"
+                                class="w-full accent-primary"></div><button onclick="copyFontCode()"
+                            class="w-full bg-primary hover:bg-primaryHover text-white py-4 rounded-xl font-bold shadow-lg transition-all hover:-translate-y-0.5 mt-2">Copy
+                            Font CSS</button>
+                    </div>
+                    <div
+                        class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl min-h-[400px] p-10 border border-slate-700 shadow-2xl flex items-center justify-center">
+                        <p id="font-preview"
+                            class="text-white text-2xl md:text-3xl transition-all text-center leading-relaxed"
+                            style="font-family: sans-serif; font-weight: 400; letter-spacing: 0px; line-height: 1.5;">
+                            "Design is intelligence made visible."<br><span class="text-lg text-slate-400 block mt-4">—
+                                Alina Wheeler</span></p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="font-size" class="generator-section hidden">
+                <div class="mb-10">
+                    <h1 class="text-4xl font-black text-white tracking-tight">PX to REM Converter</h1>
+                </div>
+                <div class="grid grid-cols-1 xl:grid-cols-2 gap-10">
+                    <div
+                        class="bg-panel/40 backdrop-blur-xl p-8 rounded-3xl border border-slate-700/50 space-y-8 shadow-xl">
+                        <div><label class="block text-sm font-medium text-slate-300 mb-3">Root HTML Size (Standard is
+                                16px)</label><input type="number" id="fs-base" value="16"
+                                class="w-full bg-dark/80 border border-slate-700 rounded-xl p-4 text-white font-mono text-lg outline-none focus:border-primary transition-colors">
+                        </div>
+                        <div><label class="flex justify-between text-sm font-medium text-slate-300 mb-3"><span>Target
+                                    Pixel Size</span> <span id="fs-px-val"
+                                    class="text-primary font-mono bg-primary/10 px-3 py-1 rounded-lg font-bold">24px</span></label><input
+                                type="range" id="fs-px" min="8" max="150" value="24" class="w-full accent-primary">
+                        </div>
+                        <div
+                            class="p-6 bg-gradient-to-b from-dark to-slate-900 rounded-2xl border border-slate-700 text-center shadow-inner">
+                            <span class="text-slate-500 text-xs uppercase tracking-widest font-bold">Calculated
+                                Output</span>
+                            <div id="fs-result"
+                                class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400 mt-2 drop-shadow-md">
+                                1.5rem</div>
+                        </div><button onclick="copyFontSizeCode()"
+                            class="w-full bg-primary hover:bg-primaryHover text-white py-4 rounded-xl font-bold shadow-lg transition-all hover:-translate-y-0.5">Copy
+                            Output CSS</button>
+                    </div>
+                    <div
+                        class="bg-panel/30 rounded-3xl min-h-[400px] flex flex-col justify-center items-center p-10 border border-slate-800">
+                        <span class="text-slate-500 mb-6 uppercase tracking-widest text-sm font-semibold">Live Visual
+                            Scale</span>
+                        <div
+                            class="w-full max-w-md bg-dark border border-slate-700 rounded-2xl p-8 shadow-2xl flex items-center justify-center overflow-hidden">
+                            <div id="fs-preview" class="text-white text-center font-medium whitespace-nowrap truncate"
+                                style="font-size: 24px;">Responsive Typography</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="animation" class="generator-section hidden">
+                <div class="mb-10">
+                    <h1 class="text-4xl font-black text-white tracking-tight">Keyframe Animations</h1>
+                </div>
+                <div class="grid grid-cols-1 xl:grid-cols-12 gap-10">
+                    <div
+                        class="xl:col-span-5 bg-panel/40 backdrop-blur-xl p-8 rounded-3xl border border-slate-700/50 space-y-6 shadow-xl">
+                        <div><label class="block text-sm font-medium text-slate-300 mb-2">Animation Style</label><select
+                                id="anim-type"
+                                class="w-full bg-dark/80 border border-slate-700 rounded-xl p-3 text-white outline-none focus:border-primary transition-colors appearance-none">
+                                <option value="float">Float (Up & Down)</option>
+                                <option value="pulse-scale">Pulse Scale</option>
+                                <option value="spin-custom">Continuous Spin</option>
+                                <option value="wiggle">Wiggle</option>
+                            </select></div>
+                        <div><label
+                                class="flex justify-between text-sm font-medium text-slate-300 mb-3"><span>Duration</span>
+                                <span id="anim-dur-val"
+                                    class="text-primary bg-primary/10 px-2 rounded">2s</span></label><input type="range"
+                                id="anim-dur" min="0.1" max="5" step="0.1" value="2" class="w-full accent-primary">
+                        </div>
+                        <div><label class="block text-sm font-medium text-slate-300 mb-2">Timing Function</label><select
+                                id="anim-timing"
+                                class="w-full bg-dark/80 border border-slate-700 rounded-xl p-3 text-white outline-none focus:border-primary transition-colors appearance-none">
+                                <option value="ease-in-out">ease-in-out</option>
+                                <option value="linear">linear</option>
+                                <option value="ease-in">ease-in</option>
+                                <option value="ease-out">ease-out</option>
+                                <option value="cubic-bezier(0.68, -0.55, 0.265, 1.55)">bouncy</option>
+                            </select></div>
+                        <div><label class="block text-sm font-medium text-slate-300 mb-2">Iteration Count</label><select
+                                id="anim-iter"
+                                class="w-full bg-dark/80 border border-slate-700 rounded-xl p-3 text-white outline-none focus:border-primary transition-colors appearance-none">
+                                <option value="infinite">infinite</option>
+                                <option value="1">1 (Play once)</option>
+                                <option value="3">3</option>
+                            </select></div><button onclick="copyAnimationCode()"
+                            class="w-full bg-primary hover:bg-primaryHover text-white py-4 rounded-xl font-bold shadow-lg transition-all hover:-translate-y-0.5 mt-4">Copy
+                            Class & Keyframes</button>
+                    </div>
+                    <div
+                        class="xl:col-span-7 bg-checkered p-8 rounded-3xl min-h-[400px] border border-slate-800 shadow-inner flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute top-6 right-6 flex gap-2"><button onclick="triggerAnimation()"
+                                class="bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500 hover:text-white p-2 rounded-lg transition-colors border border-emerald-500/30"
+                                title="Replay"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                                        clip-rule="evenodd"></path>
+                                </svg></button></div>
+                        <div id="anim-preview"
+                            class="w-40 h-40 bg-gradient-to-tr from-orange-400 to-rose-500 rounded-3xl shadow-2xl shadow-rose-500/20 flex items-center justify-center text-white font-bold text-xl border-2 border-white/20">
+                            Animate Me</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="states" class="generator-section hidden">
+                <div class="mb-10">
+                    <h1 class="text-4xl font-black text-white tracking-tight">Hover States & Transitions</h1>
+                </div>
+                <div class="grid grid-cols-1 xl:grid-cols-2 gap-10">
+                    <div
+                        class="bg-panel/40 backdrop-blur-xl p-8 rounded-3xl border border-slate-700/50 space-y-6 shadow-xl">
+                        <div class="p-4 bg-slate-800/50 rounded-xl mb-4 border border-slate-700">
+                            <h3 class="text-sm font-bold text-white mb-4 uppercase tracking-wider text-emerald-400">Base
+                                Transition</h3>
+                            <div><label class="flex justify-between text-sm font-medium text-slate-300 mb-3"><span>Duration
+                                        (ms)</span> <span id="trans-dur-val"
+                                        class="text-emerald-400 bg-emerald-400/10 px-2 rounded">300ms</span></label><input
+                                    type="range" id="trans-dur" min="100" max="1000" step="50" value="300"
+                                    class="w-full accent-emerald-500"></div>
+                            <div class="mt-4"><label
+                                    class="block text-sm font-medium text-slate-300 mb-2">Easing</label><select
+                                    id="trans-ease"
+                                    class="w-full bg-dark/80 border border-slate-700 rounded-xl p-3 text-white outline-none focus:border-emerald-500 transition-colors appearance-none">
+                                    <option value="ease">ease</option>
+                                    <option value="ease-in-out">ease-in-out</option>
+                                    <option value="linear">linear</option>
+                                    <option value="cubic-bezier(0.175, 0.885, 0.32, 1.275)">spring bounce</option>
+                                </select></div>
+                        </div>
+                        <div class="p-4 bg-slate-800/50 rounded-xl border border-slate-700">
+                            <h3 class="text-sm font-bold text-white mb-4 uppercase tracking-wider text-emerald-400">
+                                :Hover Properties</h3>
+                            <div><label class="flex justify-between text-sm font-medium text-slate-300 mb-3"><span>Scale
+                                        (Zoom)</span> <span id="hover-scale-val"
+                                        class="text-emerald-400 bg-emerald-400/10 px-2 rounded">1.1</span></label><input
+                                    type="range" id="hover-scale" min="0.8" max="1.5" step="0.05" value="1.1"
+                                    class="w-full accent-emerald-500"></div>
+                            <div class="mt-4"><label
+                                    class="flex justify-between text-sm font-medium text-slate-300 mb-3"><span>Translate
+                                        Y (Lift)</span> <span id="hover-lift-val"
+                                        class="text-emerald-400 bg-emerald-400/10 px-2 rounded">-5px</span></label><input
+                                    type="range" id="hover-lift" min="-20" max="20" step="1" value="-5"
+                                    class="w-full accent-emerald-500"></div>
+                            <div class="mt-4"><label class="block text-sm font-medium text-slate-300 mb-3">Hover
+                                    Background Color</label><input type="color" id="hover-color" value="#059669"
+                                    class="h-12 w-full cursor-pointer bg-dark/50 rounded-lg border border-slate-700 p-1">
+                            </div>
+                        </div>
+                        <button onclick="copyStateCode()"
+                            class="w-full bg-emerald-600 hover:bg-emerald-500 text-white py-4 rounded-xl font-bold shadow-lg transition-all hover:-translate-y-0.5 mt-4">Copy
+                            CSS Classes</button>
+                    </div>
+                    <div
+                        class="bg-checkered rounded-3xl min-h-[400px] flex items-center justify-center border border-slate-800 shadow-inner">
+                        <button id="state-preview"
+                            class="bg-slate-700 text-white font-bold text-xl px-10 py-5 rounded-2xl shadow-xl border border-slate-600 cursor-pointer">Hover
+                            Me!</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="filters" class="generator-section hidden">
+                <div class="mb-10">
+                    <h1 class="text-4xl font-black text-white tracking-tight">CSS Image Filters</h1>
+                </div>
+                <div class="grid grid-cols-1 xl:grid-cols-2 gap-10">
+                    <div
+                        class="bg-panel/40 backdrop-blur-xl p-8 rounded-3xl border border-slate-700/50 space-y-6 shadow-xl">
+                        <div><label
+                                class="flex justify-between text-sm font-medium text-slate-300 mb-3"><span>Grayscale</span>
+                                <span id="fil-gray-val"
+                                    class="text-cyan-400 bg-cyan-400/10 px-2 rounded">0%</span></label><input
+                                type="range" id="fil-gray" min="0" max="100" value="0" class="w-full accent-cyan-500">
+                        </div>
+                        <div><label
+                                class="flex justify-between text-sm font-medium text-slate-300 mb-3"><span>Blur</span>
+                                <span id="fil-blur-val"
+                                    class="text-cyan-400 bg-cyan-400/10 px-2 rounded">0px</span></label><input
+                                type="range" id="fil-blur" min="0" max="20" value="0" class="w-full accent-cyan-500">
+                        </div>
+                        <div><label
+                                class="flex justify-between text-sm font-medium text-slate-300 mb-3"><span>Brightness</span>
+                                <span id="fil-bright-val"
+                                    class="text-cyan-400 bg-cyan-400/10 px-2 rounded">100%</span></label><input
+                                type="range" id="fil-bright" min="0" max="200" value="100"
+                                class="w-full accent-cyan-500"></div>
+                        <div><label
+                                class="flex justify-between text-sm font-medium text-slate-300 mb-3"><span>Contrast</span>
+                                <span id="fil-con-val"
+                                    class="text-cyan-400 bg-cyan-400/10 px-2 rounded">100%</span></label><input
+                                type="range" id="fil-con" min="0" max="200" value="100" class="w-full accent-cyan-500">
+                        </div>
+                        <div><label
+                                class="flex justify-between text-sm font-medium text-slate-300 mb-3"><span>Hue-Rotate</span>
+                                <span id="fil-hue-val"
+                                    class="text-cyan-400 bg-cyan-400/10 px-2 rounded">0deg</span></label><input
+                                type="range" id="fil-hue" min="0" max="360" value="0" class="w-full accent-cyan-500">
+                        </div>
+                        <button onclick="copyFilterCode()"
+                            class="w-full bg-cyan-600 hover:bg-cyan-500 text-white py-4 rounded-xl font-bold shadow-lg transition-all hover:-translate-y-0.5 mt-4">Copy
+                            Filter CSS</button>
+                    </div>
+                    <div
+                        class="bg-checkered rounded-3xl min-h-[400px] flex items-center justify-center border border-slate-800 shadow-inner overflow-hidden relative">
+                        <img id="filter-preview"
+                            src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Test Image" class="object-cover w-full h-full transition-all duration-100">
+                    </div>
+                </div>
+            </section>
+
+            <section id="transforms" class="generator-section hidden">
+                <div class="mb-10">
+                    <h1 class="text-4xl font-black text-white tracking-tight">CSS 2D Transforms</h1>
+                </div>
+                <div class="grid grid-cols-1 xl:grid-cols-2 gap-10">
+                    <div
+                        class="bg-panel/40 backdrop-blur-xl p-8 rounded-3xl border border-slate-700/50 space-y-6 shadow-xl">
+                        <div><label class="flex justify-between text-sm font-medium text-slate-300 mb-3"><span>Translate
+                                    X</span> <span id="tf-tx-val"
+                                    class="text-rose-400 bg-rose-400/10 px-2 rounded">0px</span></label><input
+                                type="range" id="tf-tx" min="-100" max="100" value="0" class="w-full accent-rose-500">
+                        </div>
+                        <div><label class="flex justify-between text-sm font-medium text-slate-300 mb-3"><span>Translate
+                                    Y</span> <span id="tf-ty-val"
+                                    class="text-rose-400 bg-rose-400/10 px-2 rounded">0px</span></label><input
+                                type="range" id="tf-ty" min="-100" max="100" value="0" class="w-full accent-rose-500">
+                        </div>
+                        <div><label
+                                class="flex justify-between text-sm font-medium text-slate-300 mb-3"><span>Rotate</span>
+                                <span id="tf-rot-val"
+                                    class="text-rose-400 bg-rose-400/10 px-2 rounded">0deg</span></label><input
+                                type="range" id="tf-rot" min="-180" max="180" value="0" class="w-full accent-rose-500">
+                        </div>
+                        <div><label
+                                class="flex justify-between text-sm font-medium text-slate-300 mb-3"><span>Scale</span>
+                                <span id="tf-scale-val"
+                                    class="text-rose-400 bg-rose-400/10 px-2 rounded">1</span></label><input
+                                type="range" id="tf-scale" min="0.5" max="2" step="0.1" value="1"
+                                class="w-full accent-rose-500"></div>
+                        <div><label class="flex justify-between text-sm font-medium text-slate-300 mb-3"><span>Skew
+                                    X</span> <span id="tf-skew-val"
+                                    class="text-rose-400 bg-rose-400/10 px-2 rounded">0deg</span></label><input
+                                type="range" id="tf-skew" min="-90" max="90" value="0" class="w-full accent-rose-500">
+                        </div>
+                        <button onclick="copyTransformCode()"
+                            class="w-full bg-rose-600 hover:bg-rose-500 text-white py-4 rounded-xl font-bold shadow-lg transition-all hover:-translate-y-0.5 mt-4">Copy
+                            Transform CSS</button>
+                    </div>
+                    <div
+                        class="bg-checkered rounded-3xl min-h-[400px] flex items-center justify-center border border-slate-800 shadow-inner overflow-hidden">
+                        <div id="transform-preview"
+                            class="w-48 h-48 bg-gradient-to-tr from-rose-500 to-orange-400 rounded-2xl shadow-2xl flex items-center justify-center text-white font-bold text-xl border-4 border-white/20 transition-transform duration-75">
+                            Transform</div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('sidebar').classList.toggle('-translate-x-full');
+            document.getElementById('mobile-overlay').classList.toggle('hidden');
+        }
+
+        const modal = document.getElementById('modernModal');
+        const modalMessage = document.getElementById('modalMessage');
+        document.getElementById('closeModalBtn').addEventListener('click', () => modal.close());
+        document.getElementById('closeLicenseBtn').addEventListener('click', () => document.getElementById('licenseModal').close());
+
+        function showModal(message) { modalMessage.textContent = message; modal.showModal(); }
+
+        const navItems = document.querySelectorAll('.nav-item');
+        const sections = document.querySelectorAll('.generator-section');
+
+        navItems[0].classList.add('text-white', 'bg-slate-800/80');
+        navItems[0].classList.remove('text-slate-400');
+        sections[0].classList.remove('hidden');
+        sections[0].classList.add('block');
+
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navItems.forEach(nav => {
+                    nav.classList.remove('text-white', 'bg-slate-800/80', 'bg-emerald-500/10', 'border-emerald-500/20', 'bg-cyan-500/10', 'border-cyan-500/20', 'bg-rose-500/10', 'border-rose-500/20');
+                    nav.classList.add('text-slate-400', 'border-transparent');
+                });
+                sections.forEach(sec => { sec.classList.add('hidden'); sec.classList.remove('block'); });
+
+                // Custom coloring for new tabs
+                if (item.dataset.target === 'states') item.classList.add('text-white', 'bg-emerald-500/10', 'border-emerald-500/20');
+                else if (item.dataset.target === 'filters') item.classList.add('text-white', 'bg-cyan-500/10', 'border-cyan-500/20');
+                else if (item.dataset.target === 'transforms') item.classList.add('text-white', 'bg-rose-500/10', 'border-rose-500/20');
+                else item.classList.add('text-white', 'bg-slate-800/80');
+
+                item.classList.remove('text-slate-400', 'border-transparent');
+                const target = document.getElementById(item.dataset.target);
+                target.classList.remove('hidden');
+                target.classList.add('block', 'animate-[modalFadeIn_0.4s_ease-out]');
+
+                if (window.innerWidth < 768) toggleMenu();
+            });
+        });
+
+        function hexToRgba(hex, alpha) {
+            let r = parseInt(hex.slice(1, 3), 16), g = parseInt(hex.slice(3, 5), 16), b = parseInt(hex.slice(5, 7), 16);
+            return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+        }
+        function adjustColor(color, amount) {
+            return '#' + color.replace(/^#/, '').replace(/../g, color => ('0' + Math.min(255, Math.max(0, parseInt(color, 16) + amount)).toString(16)).substr(-2));
+        }
+        const twColors = ['indigo', 'purple', 'pink', 'rose', 'orange', 'amber', 'emerald', 'cyan', 'blue', 'teal'];
+
+        const gBlur = document.getElementById('glass-blur'), gAlpha = document.getElementById('glass-alpha'), gColor = document.getElementById('glass-color'), gPreview = document.getElementById('glass-preview');
+        function updateGlass() { document.getElementById('glass-blur-val').textContent = gBlur.value + 'px'; document.getElementById('glass-alpha-val').textContent = gAlpha.value; gPreview.style.background = hexToRgba(gColor.value, gAlpha.value); gPreview.style.backdropFilter = `blur(${gBlur.value}px)`; gPreview.style.webkitBackdropFilter = `blur(${gBlur.value}px)`; gPreview.style.border = `1px solid ${hexToRgba('#ffffff', 0.2)}`; }
+        function copyGlassCode() { const css = `.glass-panel {\n  background: ${hexToRgba(gColor.value, gAlpha.value)};\n  backdrop-filter: blur(${gBlur.value}px);\n  -webkit-backdrop-filter: blur(${gBlur.value}px);\n  border: 1px solid rgba(255, 255, 255, 0.2);\n  border-radius: 1.5rem;\n}`; navigator.clipboard.writeText(css); showModal(css); }
+        [gBlur, gAlpha, gColor].forEach(i => i.addEventListener('input', updateGlass)); updateGlass();
+
+        const bsX = document.getElementById('bs-x'), bsY = document.getElementById('bs-y'), bsBlur = document.getElementById('bs-blur'), bsSpread = document.getElementById('bs-spread'), bsColor = document.getElementById('bs-color'), bsPreview = document.getElementById('bs-preview');
+        function updateShadow() { document.getElementById('bs-x-val').textContent = bsX.value + 'px'; document.getElementById('bs-y-val').textContent = bsY.value + 'px'; document.getElementById('bs-blur-val').textContent = bsBlur.value + 'px'; document.getElementById('bs-spread-val').textContent = bsSpread.value + 'px'; bsPreview.style.boxShadow = `${bsX.value}px ${bsY.value}px ${bsBlur.value}px ${bsSpread.value}px ${bsColor.value}`; }
+        function copyShadowCode() { const css = `.shadow-box {\n  box-shadow: ${bsX.value}px ${bsY.value}px ${bsBlur.value}px ${bsSpread.value}px ${bsColor.value};\n}`; navigator.clipboard.writeText(css); showModal(css); }
+        [bsX, bsY, bsBlur, bsSpread, bsColor].forEach(i => i.addEventListener('input', updateShadow)); updateShadow();
+
+        const gradAngle = document.getElementById('grad-angle'), gradC1 = document.getElementById('grad-color1'), gradC2 = document.getElementById('grad-color2'), gradPreview = document.getElementById('grad-preview');
+        function updateGradient() { document.getElementById('grad-angle-val').textContent = gradAngle.value + 'deg'; gradPreview.style.background = `linear-gradient(${gradAngle.value}deg, ${gradC1.value}, ${gradC2.value})`; }
+        function copyGradientCode() { const css = `.gradient-bg {\n  background: linear-gradient(${gradAngle.value}deg, ${gradC1.value}, ${gradC2.value});\n}`; navigator.clipboard.writeText(css); showModal(css); }
+        [gradAngle, gradC1, gradC2].forEach(i => i.addEventListener('input', updateGradient)); updateGradient();
+
+        const ctBase = document.getElementById('ct-base');
+        function updateColorTheory() { const base = ctBase.value; const c1 = adjustColor(base, 40); const comp = adjustColor(base, -40); document.getElementById('ct-base-prev').style.backgroundColor = base; document.getElementById('ct-analog1').style.backgroundColor = c1; document.getElementById('ct-comp').style.backgroundColor = comp; document.getElementById('ct-txt-base').textContent = base; document.getElementById('ct-txt1').textContent = c1; document.getElementById('ct-txt-comp').textContent = comp; }
+        function copyColorCode() { const css = `:root {\n  --color-primary: ${ctBase.value};\n  --color-primary-light: ${document.getElementById('ct-txt1').textContent};\n  --color-primary-dark: ${document.getElementById('ct-txt-comp').textContent};\n}`; navigator.clipboard.writeText(css); showModal(css); }
+        ctBase.addEventListener('input', updateColorTheory); updateColorTheory();
+
+        const gridCols = document.getElementById('grid-cols'), gridRows = document.getElementById('grid-rows'), gridGap = document.getElementById('grid-gap'), gridPreview = document.getElementById('grid-preview');
+        let gridBoxCount = 6;
+        function renderGridBoxes() {
+            gridPreview.innerHTML = '';
+            for (let i = 0; i < gridBoxCount; i++) {
+                const color = twColors[i % twColors.length];
+                gridPreview.innerHTML += `<div class="bg-${color}-500 border-2 border-${color}-400 rounded-xl flex items-center justify-center font-bold text-2xl shadow-lg resize overflow-auto min-w-[50px] min-h-[50px]">${i + 1}</div>`;
+            }
+        }
+        function modifyGridBox(amount) {
+            gridBoxCount += amount;
+            if (gridBoxCount < 1) gridBoxCount = 1;
+            renderGridBoxes();
+        }
+        function updateGrid() { document.getElementById('grid-cols-val').textContent = gridCols.value; document.getElementById('grid-rows-val').textContent = gridRows.value; document.getElementById('grid-gap-val').textContent = gridGap.value + 'px'; gridPreview.style.gridTemplateColumns = `repeat(${gridCols.value}, 1fr)`; gridPreview.style.gridTemplateRows = `repeat(${gridRows.value}, 1fr)`; gridPreview.style.gap = `${gridGap.value}px`; }
+        function copyGridCode() { const css = `.grid-container {\n  display: grid;\n  grid-template-columns: repeat(${gridCols.value}, 1fr);\n  grid-template-rows: repeat(${gridRows.value}, 1fr);\n  gap: ${gridGap.value}px;\n}`; navigator.clipboard.writeText(css); showModal(css); }
+        [gridCols, gridRows, gridGap].forEach(i => i.addEventListener('input', updateGrid));
+        renderGridBoxes(); updateGrid();
+
+        const fDir = document.getElementById('flex-dir'), fWrap = document.getElementById('flex-wrap'), fJc = document.getElementById('flex-jc'), fAi = document.getElementById('flex-ai'), fGap = document.getElementById('flex-gap'), flexPreview = document.getElementById('flex-preview');
+        let flexBoxCount = 3;
+        function renderFlexBoxes() {
+            flexPreview.innerHTML = '';
+            for (let i = 0; i < flexBoxCount; i++) {
+                const color = twColors[(i + 3) % twColors.length];
+                flexPreview.innerHTML += `<div class="bg-${color}-500 border-2 border-${color}-400 rounded-xl p-6 flex items-center justify-center font-bold text-2xl shadow-lg resize both overflow-auto min-w-[80px]">${i + 1}</div>`;
+            }
+        }
+        function modifyFlexBox(amount) {
+            flexBoxCount += amount;
+            if (flexBoxCount < 1) flexBoxCount = 1;
+            renderFlexBoxes();
+        }
+        function updateFlex() { document.getElementById('flex-gap-val').textContent = fGap.value + 'px'; flexPreview.style.flexDirection = fDir.value; flexPreview.style.flexWrap = fWrap.value; flexPreview.style.justifyContent = fJc.value; flexPreview.style.alignItems = fAi.value; flexPreview.style.gap = `${fGap.value}px`; }
+        function copyFlexCode() { const css = `.flex-container {\n  display: flex;\n  flex-direction: ${fDir.value};\n  flex-wrap: ${fWrap.value};\n  justify-content: ${fJc.value};\n  align-items: ${fAi.value};\n  gap: ${fGap.value}px;\n}`; navigator.clipboard.writeText(css); showModal(css); }
+        [fDir, fWrap, fJc, fAi, fGap].forEach(i => i.addEventListener('input', updateFlex));
+        renderFlexBoxes(); updateFlex();
+
+        const nColor = document.getElementById('neu-color'), nDist = document.getElementById('neu-dist'), nBlur = document.getElementById('neu-blur');
+        function updateNeu() { const dist = parseInt(nDist.value), bg = nColor.value, light = adjustColor(bg, 18), dark = adjustColor(bg, -25); document.getElementById('neu-dist-val').textContent = dist + 'px'; document.getElementById('neu-blur-val').textContent = nBlur.value + 'px'; document.getElementById('neu-bg').style.backgroundColor = bg; const preview = document.getElementById('neu-preview'); preview.style.backgroundColor = bg; preview.style.boxShadow = `${dist}px ${dist}px ${nBlur.value}px ${dark}, -${dist}px -${dist}px ${nBlur.value}px ${light}`; }
+        function copyNeuCode() { const bg = nColor.value, dist = nDist.value, blur = nBlur.value; const css = `.neumorphic-box {\n  background: ${bg};\n  box-shadow: ${dist}px ${dist}px ${blur}px ${adjustColor(bg, -25)},\n              -${dist}px -${dist}px ${blur}px ${adjustColor(bg, 18)};\n  border-radius: 2rem;\n}`; navigator.clipboard.writeText(css); showModal(css); }
+        [nColor, nDist, nBlur].forEach(i => i.addEventListener('input', updateNeu)); updateNeu();
+
+        const shTl = document.getElementById('sh-tl'), shTr = document.getElementById('sh-tr'), shBr = document.getElementById('sh-br'), shBl = document.getElementById('sh-bl'), shPreview = document.getElementById('shape-preview');
+        function updateShape() { document.getElementById('sh-tl-val').textContent = shTl.value + '%'; document.getElementById('sh-tr-val').textContent = shTr.value + '%'; document.getElementById('sh-br-val').textContent = shBr.value + '%'; document.getElementById('sh-bl-val').textContent = shBl.value + '%'; const rad = `${shTl.value}% ${100 - shTl.value}% ${shBr.value}% ${100 - shBr.value}% / ${shTr.value}% ${shBl.value}% ${100 - shBl.value}% ${100 - shTr.value}%`; shPreview.style.borderRadius = rad; }
+        function copyShapeCode() { const rad = `${shTl.value}% ${100 - shTl.value}% ${shBr.value}% ${100 - shBr.value}% / ${shTr.value}% ${shBl.value}% ${100 - shBl.value}% ${100 - shTr.value}%`; const css = `.organic-shape {\n  border-radius: ${rad};\n}`; navigator.clipboard.writeText(css); showModal(css); }
+        [shTl, shTr, shBr, shBl].forEach(i => i.addEventListener('input', updateShape)); updateShape();
+
+        const fnFam = document.getElementById('f-family'), fnWeight = document.getElementById('f-weight'), fnLs = document.getElementById('f-ls'), fnLh = document.getElementById('f-lh'), fnPrev = document.getElementById('font-preview'), gFontUrl = document.getElementById('g-font-url'), gFontName = document.getElementById('g-font-name');
+        function applyGoogleFont() { const url = gFontUrl.value.trim(); const name = gFontName.value.trim(); if (url && name) { let existingLink = document.getElementById('custom-g-font'); if (existingLink) existingLink.remove(); const link = document.createElement('link'); link.id = 'custom-g-font'; link.rel = 'stylesheet'; link.href = url; document.head.appendChild(link); fnPrev.style.fontFamily = name; fnFam.value = ""; } else { alert("Provide URL and Name."); } }
+        function updateFont() { document.getElementById('f-weight-val').textContent = fnWeight.value; document.getElementById('f-ls-val').textContent = fnLs.value + 'px'; document.getElementById('f-lh-val').textContent = fnLh.value; if (fnFam.value !== "") { fnPrev.style.fontFamily = fnFam.value; } fnPrev.style.fontWeight = fnWeight.value; fnPrev.style.letterSpacing = fnLs.value + 'px'; fnPrev.style.lineHeight = fnLh.value; }
+        function copyFontCode() { let activeFamily = fnPrev.style.fontFamily; let importStr = ""; if (gFontUrl.value && gFontName.value && fnFam.value === "") { importStr = `@import url('${gFontUrl.value}');\n\n`; } const css = `${importStr}.typography-style {\n  font-family: ${activeFamily};\n  font-weight: ${fnWeight.value};\n  letter-spacing: ${fnLs.value}px;\n  line-height: ${fnLh.value};\n}`; navigator.clipboard.writeText(css); showModal(css); }
+        [fnFam, fnWeight, fnLs, fnLh].forEach(i => i.addEventListener('input', updateFont));
+
+        const fsBase = document.getElementById('fs-base'), fsPx = document.getElementById('fs-px'), fsPrev = document.getElementById('fs-preview');
+        function updateFontSize() { document.getElementById('fs-px-val').textContent = fsPx.value + 'px'; const base = parseFloat(fsBase.value) || 16; const remVal = (fsPx.value / base).toFixed(3).replace(/\.?0+$/, ''); document.getElementById('fs-result').textContent = remVal + 'rem'; fsPrev.style.fontSize = fsPx.value + 'px'; }
+        function copyFontSizeCode() { const base = parseFloat(fsBase.value) || 16; const remVal = (fsPx.value / base).toFixed(3).replace(/\.?0+$/, ''); const css = `.responsive-text {\n  font-size: ${fsPx.value}px; /* fallback */\n  font-size: ${remVal}rem;\n}`; navigator.clipboard.writeText(css); showModal(css); }
+        [fsBase, fsPx].forEach(i => i.addEventListener('input', updateFontSize)); updateFontSize();
+
+        const aType = document.getElementById('anim-type'), aDur = document.getElementById('anim-dur'), aTime = document.getElementById('anim-timing'), aIter = document.getElementById('anim-iter'), aPrev = document.getElementById('anim-preview'), styleBlock = document.getElementById('dynamic-animations');
+        const keyframeMap = { 'float': `@keyframes custom-float {\n  0%, 100% { transform: translateY(0); }\n  50% { transform: translateY(-20px); }\n}`, 'pulse-scale': `@keyframes custom-pulse-scale {\n  0%, 100% { transform: scale(1); }\n  50% { transform: scale(1.1); }\n}`, 'spin-custom': `@keyframes custom-spin {\n  from { transform: rotate(0deg); }\n  to { transform: rotate(360deg); }\n}`, 'wiggle': `@keyframes custom-wiggle {\n  0%, 100% { transform: rotate(-3deg); }\n  50% { transform: rotate(3deg); }\n}` };
+        const animationNameMap = { 'float': 'custom-float', 'pulse-scale': 'custom-pulse-scale', 'spin-custom': 'custom-spin', 'wiggle': 'custom-wiggle' };
+        function injectKeyframes() { let cssString = ""; for (let key in keyframeMap) { cssString += keyframeMap[key] + "\n"; } styleBlock.innerHTML = cssString; }
+        function updateAnimation() { document.getElementById('anim-dur-val').textContent = aDur.value + 's'; const name = animationNameMap[aType.value], dur = aDur.value + 's', timing = aTime.value, iter = aIter.value; aPrev.style.animation = `${name} ${dur} ${timing} ${iter}`; }
+        function triggerAnimation() { aPrev.style.animation = 'none'; void aPrev.offsetWidth; updateAnimation(); }
+        function copyAnimationCode() { const name = animationNameMap[aType.value], dur = aDur.value + 's', timing = aTime.value, iter = aIter.value, kfCode = keyframeMap[aType.value], classCode = `.animated-element {\n  animation: ${name} ${dur} ${timing} ${iter};\n}`; const finalOutput = `${kfCode}\n\n${classCode}`; navigator.clipboard.writeText(finalOutput); showModal(finalOutput); }
+        [aType, aDur, aTime, aIter].forEach(i => i.addEventListener('input', updateAnimation)); injectKeyframes(); updateAnimation();
+
+        const sDur = document.getElementById('trans-dur'), sEase = document.getElementById('trans-ease'), hScale = document.getElementById('hover-scale'), hLift = document.getElementById('hover-lift'), hColor = document.getElementById('hover-color'), sPrev = document.getElementById('state-preview');
+        function updateStatePreview() {
+            document.getElementById('trans-dur-val').textContent = sDur.value + 'ms'; document.getElementById('hover-scale-val').textContent = hScale.value; document.getElementById('hover-lift-val').textContent = hLift.value + 'px';
+
+            sPrev.style.transition = `all ${sDur.value}ms ${sEase.value}`;
+
+            sPrev.onmouseenter = () => {
+                sPrev.style.transform = `scale(${hScale.value}) translateY(${hLift.value}px)`;
+                sPrev.style.backgroundColor = hColor.value;
+            };
+            sPrev.onmouseleave = () => {
+                sPrev.style.transform = `scale(1) translateY(0)`;
+                sPrev.style.backgroundColor = '#334155';
+            };
+        }
+        function copyStateCode() {
+            const css = `.interactive-button {\n  background-color: #334155; /* Base color */\n  transition: all ${sDur.value}ms ${sEase.value};\n}\n\n.interactive-button:hover, \n.interactive-button:focus {\n  background-color: ${hColor.value};\n  transform: scale(${hScale.value}) translateY(${hLift.value}px);\n}`;
+            navigator.clipboard.writeText(css); showModal(css);
+        }
+        [sDur, sEase, hScale, hLift, hColor].forEach(i => i.addEventListener('input', updateStatePreview)); updateStatePreview();
+
+        const filGray = document.getElementById('fil-gray'), filBlur = document.getElementById('fil-blur'), filBright = document.getElementById('fil-bright'), filCon = document.getElementById('fil-con'), filHue = document.getElementById('fil-hue'), filPrev = document.getElementById('filter-preview');
+        function updateFilters() {
+            document.getElementById('fil-gray-val').textContent = filGray.value + '%'; document.getElementById('fil-blur-val').textContent = filBlur.value + 'px'; document.getElementById('fil-bright-val').textContent = filBright.value + '%'; document.getElementById('fil-con-val').textContent = filCon.value + '%'; document.getElementById('fil-hue-val').textContent = filHue.value + 'deg';
+            const filterStr = `grayscale(${filGray.value}%) blur(${filBlur.value}px) brightness(${filBright.value}%) contrast(${filCon.value}%) hue-rotate(${filHue.value}deg)`;
+            filPrev.style.filter = filterStr;
+        }
+        function copyFilterCode() {
+            const filterStr = `grayscale(${filGray.value}%) blur(${filBlur.value}px) brightness(${filBright.value}%) contrast(${filCon.value}%) hue-rotate(${filHue.value}deg)`;
+            const css = `.filtered-image {\n  filter: ${filterStr};\n}`;
+            navigator.clipboard.writeText(css); showModal(css);
+        }
+        [filGray, filBlur, filBright, filCon, filHue].forEach(i => i.addEventListener('input', updateFilters)); updateFilters();
+
+        const tfTx = document.getElementById('tf-tx'), tfTy = document.getElementById('tf-ty'), tfRot = document.getElementById('tf-rot'), tfScale = document.getElementById('tf-scale'), tfSkew = document.getElementById('tf-skew'), tfPrev = document.getElementById('transform-preview');
+        function updateTransform() {
+            document.getElementById('tf-tx-val').textContent = tfTx.value + 'px'; document.getElementById('tf-ty-val').textContent = tfTy.value + 'px'; document.getElementById('tf-rot-val').textContent = tfRot.value + 'deg'; document.getElementById('tf-scale-val').textContent = tfScale.value; document.getElementById('tf-skew-val').textContent = tfSkew.value + 'deg';
+            const transformStr = `translate(${tfTx.value}px, ${tfTy.value}px) rotate(${tfRot.value}deg) scale(${tfScale.value}) skewX(${tfSkew.value}deg)`;
+            tfPrev.style.transform = transformStr;
+        }
+        function copyTransformCode() {
+            const transformStr = `translate(${tfTx.value}px, ${tfTy.value}px) rotate(${tfRot.value}deg) scale(${tfScale.value}) skewX(${tfSkew.value}deg)`;
+            const css = `.transformed-element {\n  transform: ${transformStr};\n}`;
+            navigator.clipboard.writeText(css); showModal(css);
+        }
+        [tfTx, tfTy, tfRot, tfScale, tfSkew].forEach(i => i.addEventListener('input', updateTransform)); updateTransform();
+
+    </script>
+</body>
+
+</html>
