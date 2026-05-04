@@ -1134,6 +1134,35 @@
         }
         [tfTx, tfTy, tfRot, tfScale, tfSkew].forEach(i => i.addEventListener('input', updateTransform)); updateTransform();
 
+        // Prevent Right-Click (Context Menu)
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        });
+
+        // Prevent DevTools Keyboard Shortcuts
+        document.addEventListener('keydown', function (e) {
+            // Prevent F12
+            if (e.key === 'F12') {
+                e.preventDefault();
+            }
+            // Prevent Ctrl+Shift+I (Inspect)
+            if (e.ctrlKey && e.shiftKey && e.key === 'I') {
+                e.preventDefault();
+            }
+            // Prevent Ctrl+Shift+J (Console)
+            if (e.ctrlKey && e.shiftKey && e.key === 'J') {
+                e.preventDefault();
+            }
+            // Prevent Ctrl+U (View Source)
+            if (e.ctrlKey && e.key === 'u' || e.key === 'U') {
+                e.preventDefault();
+            }
+            // Prevent Ctrl+Shift+C (Inspect Element)
+            if (e.ctrlKey && e.shiftKey && e.key === 'C') {
+                e.preventDefault();
+            }
+        });
+
     </script>
 </body>
 
