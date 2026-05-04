@@ -71,11 +71,43 @@
             background-image: radial-gradient(#334155 1px, transparent 1px);
             background-size: 24px 24px;
         }
+
+        /* --- Loading Screen Styles --- */
+        #loading-screen {
+            transition: transform 0.8s cubic-bezier(0.8, 0, 0.2, 1);
+        }
+
+        .slide-up-hide {
+            transform: translateY(-100%);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+            animation: pulse-glow 1.5s infinite alternate;
+        }
+
+        @keyframes pulse-glow {
+            from { text-shadow: 0 0 10px rgba(99, 102, 241, 0.2); }
+            to { text-shadow: 0 0 30px rgba(99, 102, 241, 0.8); }
+        }
     </style>
 </head>
 
 <body
     class="bg-dark text-slate-200 h-screen flex overflow-hidden font-sans antialiased selection:bg-primary selection:text-white">
+
+    <!-- Loading Screen Overlay -->
+    <div id="loading-screen" class="fixed inset-0 z-[100] bg-dark flex flex-col items-center justify-center">
+        <h1 class="text-5xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-400 tracking-tight mb-4 text-glow">
+            Prism CSS Toolkit
+        </h1>
+        <p class="text-slate-400 text-lg md:text-xl tracking-widest uppercase font-medium">By Arjunren Von</p>
+        <div class="mt-8 flex gap-3">
+            <div class="w-3 h-3 rounded-full bg-primary animate-bounce" style="animation-delay: 0s;"></div>
+            <div class="w-3 h-3 rounded-full bg-emerald-400 animate-bounce" style="animation-delay: 0.1s;"></div>
+            <div class="w-3 h-3 rounded-full bg-cyan-400 animate-bounce" style="animation-delay: 0.2s;"></div>
+        </div>
+    </div>
 
     <style id="dynamic-animations"></style>
 
@@ -883,6 +915,16 @@
     </main>
 
     <script>
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const loader = document.getElementById('loading-screen');
+                loader.classList.add('slide-up-hide');
+                setTimeout(() => {
+                    loader.remove();
+                }, 800);
+            }, 3500);
+        });
+
         function toggleMenu() {
             document.getElementById('sidebar').classList.toggle('-translate-x-full');
             document.getElementById('mobile-overlay').classList.toggle('hidden');
@@ -911,7 +953,6 @@
                 });
                 sections.forEach(sec => { sec.classList.add('hidden'); sec.classList.remove('block'); });
 
-                // Custom coloring for new tabs
                 if (item.dataset.target === 'states') item.classList.add('text-white', 'bg-emerald-500/10', 'border-emerald-500/20');
                 else if (item.dataset.target === 'filters') item.classList.add('text-white', 'bg-cyan-500/10', 'border-cyan-500/20');
                 else if (item.dataset.target === 'transforms') item.classList.add('text-white', 'bg-rose-500/10', 'border-rose-500/20');
